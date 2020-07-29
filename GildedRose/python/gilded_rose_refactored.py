@@ -34,21 +34,13 @@ def compute_difference(item):
         return conjured_strategy(item)
     
 def default_strategy(item):
-    if item.sell_in < 0:
-        item.quality -= 2
-    
-    else:
-        item.quality -= 1
+    item.quality -= 2 if item.sell_in < 0 else 1
                 
 def legendary_strategy(item):
     pass
 
 def aged_brie_strategy(item):
-    if item.sell_in < 0:
-        item.quality += 2
-            
-    else:
-        item.quality += 1
+    item.quality += 2 if item.sell_in < 0 else 1
         
 def backstage_strategy(item):
     if 11 <= item.sell_in <50:
@@ -64,16 +56,8 @@ def backstage_strategy(item):
         item.quality = 0 
 
 def conjured_strategy(item):
-    if item.sell_in >= 0:
-        item.quality -= 2
-        
-    else:
-        item.quality -= 4
+    item.quality -= 2 if item.sell_in >= 0 else 4
     
 def is_legendary(item):
     legendary_items = ["Sulfuras"]
-    if item.name in legendary_items:
-        return True
-    
-    else:
-        return False
+    return item.name in legendary_items
