@@ -41,9 +41,9 @@ class TennisGameRefactored:
     
                     
     def is_equal(self):
-        if 0 <= self.p1points and self.p2points < 4:
+        if self.p1points >= 0 and self.p2points < 4:
             return self.score_names[self.p1points] + '-All'
-        
+
         else:
             return "Deuce"
         
@@ -55,11 +55,8 @@ class TennisGameRefactored:
     def check_for_advantage(self):
         min_score = min(self.p1points, self.p2points)
         abs_diff_score = abs(self.p1points - self.p2points)
-        
-        if min_score >= 3 and abs_diff_score == 1:
-            return True
-        else:
-            return False
+
+        return min_score >= 3 and abs_diff_score == 1
         
     def advantage(self):
         if self.p1points > self.p2points:
@@ -70,26 +67,16 @@ class TennisGameRefactored:
     def check_for_winner(self):
         max_score = max(self.p1points, self.p2points)
         abs_diff_score = abs(self.p1points - self.p2points)
-        
-        if max_score > 3 and abs_diff_score != 1:
-            return True
-        else:
-            return False
+
+        return max_score > 3 and abs_diff_score != 1
         
     
     def winner(self):
-        if self.p1points > self.p2points:
-            champ = self.player1Name                    
-        else:
-            champ = self.player2Name
-            
+        champ = self.player1Name if self.p1points > self.p2points else self.player2Name
         return 'Win for %s' % champ
             
     def check_for_tie(self):
-        if self.p1points == self.p2points:
-            return True
-        else:
-            return False
+        return self.p1points == self.p2points
     
 # NOTE: You must change this to point at the one of the three examples that you're working on!
 TennisGame = TennisGameRefactored

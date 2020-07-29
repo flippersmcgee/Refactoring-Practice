@@ -15,8 +15,8 @@ class Yahtzee:
         counts = [0]*(len(dice)+1)
         for die in dice:
             counts[die-1] += 1
-        for i in range(len(counts)):
-            if counts[i] == 5:
+        for count in counts:
+            if count == 5:
                 return 50
         return 0
     
@@ -77,28 +77,16 @@ class Yahtzee:
         self.dice[4] = _5
     
     def fours(self):
-        sum = 0
-        for at in range(5):
-            if (self.dice[at] == 4): 
-                sum += 4
-        return sum
+        return sum(4 for at in range(5) if (self.dice[at] == 4))
     
 
     def fives(self):
-        s = 0
         i = 0
-        for i in range(len(self.dice)): 
-            if (self.dice[i] == 5):
-                s = s + 5
-        return s
+        return self.dice.count(5) * 5
     
 
     def sixes(self):
-        sum = 0
-        for at in range(len(self.dice)): 
-            if (self.dice[at] == 6):
-                sum = sum + 6
-        return sum
+        return self.dice.count(6) * 6
     
     @staticmethod
     def score_pair( d1,  d2,  d3,  d4,  d5):
@@ -126,9 +114,9 @@ class Yahtzee:
         score = 0
         for i in range(6):
             if (counts[6-i-1] == 2):
-                n = n+1
+                n += 1
                 score += (6-i)
-                    
+
         if (n == 2):
             return score * 2
         else:
