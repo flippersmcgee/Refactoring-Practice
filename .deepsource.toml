@@ -1,8 +1,21 @@
 version = 1
 
+test_patterns = ["*test*"]
+
 [[analyzers]]
 name = "python"
 enabled = true
 
   [analyzers.meta]
   runtime_version = "3.x.x"
+
+[[analyzers]]
+name = "go"
+enabled = true
+
+  [analyzers.meta]
+  import_paths = ["github.com/flippersmcgee/Refactoring-Practice"]
+
+[[analyzers]]
+name = "ruby"
+enabled = true
